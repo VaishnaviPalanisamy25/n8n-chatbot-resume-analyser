@@ -1,0 +1,54 @@
+### RAG:
+
+Retrieval-Augmented Generation (RAG) is **a Generative AI technique that enhances LLM accuracy by fetching relevant, up-to-date information from external, trusted knowledge bases (like company databases or websites) before generating a response**. It reduces hallucinations and keeps models informed without needing expensive retraining.
+
+Retrieve ( Find useful info)
+
+Augement (add it io ai knowledge )
+
+Generate ( create a better response form info retrieved and based on user query)
+
+Docs → Chunks →Embedding model→ Vector DB (chunks + Vector) 
+
+Seach Query →Embedding model → Embedding → search  (Vector DB)  → Retrieve top similar embeddings → LLM → Response
+
+![image.png](attachment:6bfa5569-4664-47c6-9101-a554a24f3122:image.png)
+
+### Embedding:
+
+AI embeddings are **numerical representations of data—text, images, or audio—as dense vectors in a high-dimensional space, capturing semantic meaning and relationships**. By converting data into these lists of numbers, AI models can measure similarity, allowing for tasks like semantic search, clustering, and recommendations.
+
+Text → Embedding model → Vector
+
+Steps to build RAG:
+
+- Choose document
+- To create embedding choose DB and an embedding model
+- while creating embedding decide on vector dimension and create index.
+- now create embeddings from the doc and store to db.
+- Create  a chat trigger
+- add a AI Agent
+- add chat model to ai agent
+- add a vector store answering  tool , add same embedding model and an chat model to it.
+- AI Agent will use chat model to understand which tool to use to answer the question and use the corresponding tool.
+
+### 1️⃣ Chat Model → AI Agent
+
+- Connected to: **AI Agent**
+- Role: **Main brain of the chatbot**
+- Handles:
+    - Understanding user queries
+    - Deciding when to use tools
+    - Generating final answers
+
+👉 Think of this as: *“the decision-maker”*
+
+### 2️⃣ Chat Model → Vector Tool
+
+- Connected to: **Vector Store Tool**
+- Role: **Helper model for retrieval-based answers**
+- Handles:
+    - Interpreting retrieved chunks
+    - Formatting answers from vector search
+
+👉 Think of this as: *“the specialist”*
